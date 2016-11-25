@@ -1,0 +1,5 @@
+Config sql:
+	+ Mysql
+-> Edit config mysql in file connection.js(server_nodejs)
+
+	
