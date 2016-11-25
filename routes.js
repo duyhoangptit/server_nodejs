@@ -2,20 +2,26 @@ var user = require('./models/user');
 
 module.exports = {
     configure: function(app) {
-        app.get('/user/', function(req, res) {
+        app.get('/findAllUser/', function(req, res) {
             user.getListUser(res);
         });
 
-        app.post('/user/', function(req, res) {
+        app.get('/findUser/:username/', function(req, res) {
+            user.getListUser(res);
+        });
+
+
+        app.post('/createUser/', function(req, res) {
+            console.log(req.body);
             user.createUser(req.body, res);
         });
 
-        app.put('/user/', function(req, res) {
+        app.post('/updateUser/', function(req, res) {
             user.updateUser(req.body, res);
         });
 
-        app.delete('/user/:id/', function(req, res) {
-            user.delete(req.params.id, res);
+        app.get('/removeUser/:username', function(req, res) {
+            user.delete(req.params.username, res);
         });
     }
 };

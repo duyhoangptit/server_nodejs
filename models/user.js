@@ -16,9 +16,9 @@ function User() {
             con.query('insert into tbluser set ?', [user], function (err, result) {
                 con.release();
                 if (err) {
-                    res.send({status: 1, message: 'TODO creation failed'});
+                    res.send({status: 1, message: 'User creation failed'});
                 } else {
-                    res.send({status: 0, message: 'TODO created successfully'});
+                    res.send({status: 0, message: 'User created successfully'});
                 }
             });
         });
@@ -26,12 +26,12 @@ function User() {
 // update user by username
     this.updateUser = function (user, res) {
         connection.acquire(function (err, con) {
-            con.query('update tbluser set (?,?,?) where id = ?', [user.username, user.password, user.email, user.id], function (err, result) {
+            con.query('update tbluser set (?,?,?,?) where username = ?', [user.username, user.password, user.email, user.username], function (err, result) {
                 con.release();
                 if (err) {
-                    res.send({status: 1, message: 'TODO update failed'});
+                    res.send({status: 1, message: 'User update failed'});
                 } else {
-                    res.send({status: 0, message: 'TODO updated successfully'});
+                    res.send({status: 0, message: 'User updated successfully'});
                 }
             });
         });
@@ -39,7 +39,7 @@ function User() {
 // delete user by username
     this.delete = function (username, res) {
         connection.acquire(function (err, con) {
-            con.query('delete from tbluser where id = ?', [username], function (err, result) {
+            con.query('delete from tbluser where username = ?', [username.username], function (err, result) {
                 con.release();
                 if (err) {
                     res.send({status: 1, message: 'Failed to delete'});
